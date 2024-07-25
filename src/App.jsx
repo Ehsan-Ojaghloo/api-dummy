@@ -29,6 +29,10 @@ function App() {
           .then((res) => res.json())
           .then((output) => console.log(output))
 
+          localStorage.setItem("User Name", userName)
+          localStorage.setItem("Password", passWord)
+
+
           toast.success('You have Logged in!', {
             position: "top-right",
             autoClose: 5000,
@@ -68,7 +72,7 @@ function App() {
           </div>
           <div className="form-con">
             <input type="text" ref={data1} id='userName' placeholder='User Name' onInput={(input) => {setUserName(input.target.value)}}/>
-            <input type="text" ref={data2} id='lastName' placeholder='Last Name' onInput={(input) => {setPassword(input.target.value)}}/>
+            <input type="text" ref={data2} id='lastName' placeholder='Password' onInput={(input) => {setPassword(input.target.value)}}/>
             <button onClick={addUser}> Confirm </button>
           </div>
       </div>
