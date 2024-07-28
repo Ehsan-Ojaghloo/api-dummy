@@ -1,25 +1,26 @@
-import React , {useState , useRef} from 'react'
-import './App.scss'
+import React , { useState , useEffect , useRef} from 'react'
 
 import { ToastContainer, toast  , Bounce} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
 
-function App() {
+function Login() {
 
   const [userName , setUserName] = useState("");
   const [passWord , setPassword] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const data1 = useRef()
   const data2 = useRef()
 
+  const local1 = localStorage.getItem("User Name", userName);
+  const local2 = localStorage.getItem("Password", passWord);
+
   function addUser(confirm) {
       confirm.preventDefault();
 
-      if (userName !== "" && passWord !== "") {
+      if (userName !== "" && passWord !== "" && local1 == data1.current.value && local2 == data2.current.value ) {
           fetch('https://668fe602c0a7969efd9a0985.mockapi.io/users/data' , {
               method: "POST",
               headers: {
@@ -33,11 +34,10 @@ function App() {
           .then((res) => res.json())
           .then((output) => console.log(output))
 
-          localStorage.setItem("User Name", userName)
-          localStorage.setItem("Password", passWord)
+           
 
 
-          toast.success('You have Logged in!', {
+          toast.success(<span>Welcome {data1.current.value} &#128512;</span>, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -50,7 +50,7 @@ function App() {
           });
 
           setTimeout(()=> {
-            navigate('/dashboard')
+            navigate('/panel')
           }, 6000)
 
       } else{
@@ -67,15 +67,15 @@ function App() {
         });
       }
 
-  }
-
+    }
+    
   return (
-    <div className='main-con'>
+   <div className='main-con'>
       <img src="src/assets/bg.png" alt="image" />
       <ToastContainer/>
       <div className="action-con">
           <div className="title">
-            <h1> Register </h1>
+            <h1> Login </h1>
             <p>Please fill the forms before entering to site</p>
           </div>
           <div className="form-con">
@@ -88,4 +88,4 @@ function App() {
   )
 }
 
-export default App
+export default Login

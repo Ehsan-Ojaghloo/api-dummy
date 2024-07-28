@@ -3,12 +3,14 @@ import './Dashboard.scss'
 
 import { ToastContainer, toast  , Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Navigate } from 'react-router-dom';
 
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
 
   const [loginAuth , setLoginAuth] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(()=>{
     if(localStorage.getItem("User Name") === null && localStorage.getItem("Password") === null) {
@@ -33,6 +35,11 @@ function Dashboard() {
         theme: "colored",
         transition: Bounce,
       });
+
+      setTimeout(()=>{
+        navigate('/')
+      }, 6000)
+
     }else {
       toast.success('You have Logged in!', {
         position: "top-right",
@@ -45,7 +52,11 @@ function Dashboard() {
         theme: "colored",
         transition: Bounce,
       });
-      Navigate('/App')
+
+      setTimeout(()=>{
+        navigate('/login')
+      }, 6000)
+
     }
   }
 
