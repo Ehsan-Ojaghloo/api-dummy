@@ -1,13 +1,16 @@
-import React , {useState , useRef} from 'react'
+import React , {useState , useRef , useContext} from 'react'
 import './App.scss'
 
 import { ToastContainer, toast  , Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CounterContext } from './context/CounterContext';
 
 function App() {
 
   const [userName , setUserName] = useState("");
   const [passWord , setPassword] = useState("");
+
+  const {counter , setCounter} = useContext(CounterContext);
 
   const data1 = useRef()
   const data2 = useRef()
@@ -70,6 +73,8 @@ function App() {
             <input type="text" ref={data1} id='userName' placeholder='User Name' onInput={(input) => {setUserName(input.target.value)}}/>
             <input type="text" ref={data2} id='lastName' placeholder='Last Name' onInput={(input) => {setPassword(input.target.value)}}/>
             <button onClick={addUser}> Confirm </button>
+            {/* <button onClick={()=> setCounter(prevState =>prevState + 1)}></button> */}
+            <h3>{counter}</h3>
           </div>
       </div>
     </div>
