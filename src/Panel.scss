@@ -1,0 +1,29 @@
+.panel-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    background-color: #13A0D0;
+    color: white;
+    height: 200px;
+
+    .panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+
+        button {
+            padding: 6px;
+            width: 100px;
+            border-radius: 5px;
+            border: 2px solid white;
+            color: white;
+            background: none;
+            cursor: pointer;
+        }
+
+    }
+}

@@ -18,6 +18,11 @@
     gap: 20px;
 
     .title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
       font-family: Arial, Helvetica, sans-serif;
       
       h1 {
